@@ -15,6 +15,12 @@ spec:
   - host: capacitacion.microservicios.employee
     http:
       paths:
+      #PARA 'SWAGGER':
+      - path: "/"
+        backend:
+          serviceName: employee-service
+          servicePort: 8080
+         
       - path: "/employeeservice/get"
         backend:
           serviceName: employee-service
@@ -25,6 +31,11 @@ spec:
           serviceName: employee-service
           servicePort: 8080
 
+      - path: "/employeeservice/delete"
+        backend:
+          serviceName: employee-service
+          servicePort: 8080
+ 
       - path: "/actuator"
         backend:
           serviceName: employee-service
@@ -45,6 +56,12 @@ spec:
   - host: capacitacion.microservicios.department
     http:
       paths:
+      #PARA 'SWAGGER':
+      - path: "/"
+        backend:
+          serviceName: department-service
+          servicePort: 8080
+         
       - path: "/departmentservice/get"
         backend:
           serviceName: department-service
@@ -53,7 +70,12 @@ spec:
       - path: "/departmentservice/post"
         backend:
           serviceName: department-service
-          servicePort: 8080        
+          servicePort: 8080
+
+      - path: "/departmentservice/delete"
+        backend:
+          serviceName: department-service
+          servicePort: 8080
 
       - path: "/actuator"
         backend:
@@ -75,6 +97,12 @@ spec:
   - host: capacitacion.microservicios.organization
     http:
       paths:
+      #PARA 'SWAGGER':
+      - path: "/"
+        backend:
+          serviceName: organization-service
+          servicePort: 8080
+          
       - path: "/organizationservice/get"
         backend:
           serviceName: organization-service
@@ -84,7 +112,12 @@ spec:
         backend:
           serviceName: organization-service
           servicePort: 8080
-
+          
+      - path: "/organizationservice/delete"
+        backend:
+          serviceName: organization-service
+          servicePort: 8080
+          
       - path: "/actuator"
         backend:
           serviceName: organization-service
@@ -105,6 +138,12 @@ spec:
   - host: capacitacion.microservicios.utlcapadb
     http:
       paths:
+      #PARA 'SWAGGER':
+      - path: "/"
+        backend:
+          serviceName: utl-capadb-service
+          servicePort: 8080
+      
       - path: "/utlcapadb/get"
         backend:
           serviceName: utl-capadb-service
@@ -115,6 +154,11 @@ spec:
           serviceName: utl-capadb-service
           servicePort: 8080
 
+      - path: "/utlcapadb/delete"
+        backend:
+          serviceName: utl-capadb-service
+          servicePort: 8080
+   
       - path: "/actuator"
         backend:
           serviceName: utl-capadb-service

@@ -1,14 +1,14 @@
 
 #[ENDPOINTS-SERVICE]
-#1_stack_[Logstash-Endpoits-Service].yml
+#3_utl-capadb-service_[Endpoits-Service].yml
 
 apiVersion: v1
 kind: Endpoints
 metadata:
-  name: logstash-external-ip
+  name: oracle-external-ip
   namespace: default
   labels:
-    app: microservicio-logstash-server
+    app: microservicio-utl-capadb-service
     role: backend
     stage: production
 subsets: 
@@ -17,8 +17,8 @@ subsets:
       - ip: 192.168.56.1
     ports:
       - name: http
-        #PUERTO de escucha para 'BEATS' del 'LOGSTASH'
-        port: 5044
+        #PUERTO de escucha para 'ORACLE'
+        port: 1521
 
 ---
 
@@ -26,16 +26,16 @@ apiVersion: v1
 kind: Service
 metadata:
   #IMPORTANTE: Debe llamarse igual que el 'ENDPOINT' creado.
-  name: logstash-external-ip
+  name: oracle-external-ip
   namespace: default
   labels:
-    app: microservicio-logstash-server
+    app: microservicio-utl-capadb-service
     role: backend
     stage: production
 spec:
   ports:
-    #IMPORTANTE: Puerto DEFINIDO como INPUT para 'LOGSTASH'.
+    #IMPORTANTE: Puerto DEFINIDO como INPUT para 'ORACLE'.
     - name: http
-      port: 5044
-      targetPort: 5044
+      port: 1521
+      targetPort: 1521
   type: NodePort

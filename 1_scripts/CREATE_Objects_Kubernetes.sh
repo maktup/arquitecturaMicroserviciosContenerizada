@@ -46,7 +46,8 @@ kubectl create -f "$(vRUTA_FILE_SYSTEM)2_organization-service_[Deployment-Servic
 ECHO
 @ECHO $vTRANSACCION -- INSTALANDO SCRIPs [UTL-CAPADB]: 
 kubectl create -f "$(vRUTA_FILE_SYSTEM)1_utl-capadb-service_[ConfigMap-Secret].yml"
-kubectl create -f "$(vRUTA_FILE_SYSTEM)2_utl-capadb-service_[Deployment-Service].yml" --validate=false  
+kubectl create -f "$(vRUTA_FILE_SYSTEM)2_utl-capadb-service_[Deployment-Service].yml" --validate=false
+kubectl create -f "$(vRUTA_FILE_SYSTEM)3_utl-capadb-service_[Endpoits-Service].yml"
 ECHO
 @ECHO $vTRANSACCION -- INSTALANDO SCRIPs [OTHERs: 'GRAFANA-JAEGER-PROMETHEUS-ZIPKIN-STACK']:  
 kubectl create -f "$(vRUTA_FILE_SYSTEM)1_grafana-server_[Deployment-Service].yml"

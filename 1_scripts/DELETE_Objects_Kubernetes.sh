@@ -43,7 +43,8 @@ kubectl delete -f "$(vRUTA_FILE_SYSTEM)2_organization-service_[Deployment-Servic
 ECHO 
 ECHO $vTRANSACCION -- DESINSTALANDO SCRIPs [UTL-CAPADB]: 
 kubectl delete -f "$(vRUTA_FILE_SYSTEM)1_utl-capadb-service_[ConfigMap-Secret].yml"
-kubectl delete -f "$(vRUTA_FILE_SYSTEM)2_utl-capadb-service_[Deployment-Service].yml"  
+kubectl delete -f "$(vRUTA_FILE_SYSTEM)2_utl-capadb-service_[Deployment-Service].yml"
+kubectl delete -f "$(vRUTA_FILE_SYSTEM)3_utl-capadb-service_[Endpoits-Service].yml"
 ECHO
 ECHO $vTRANSACCION -- DESINSTALANDO SCRIPs [OTHERs: 'GRAFANA-JAEGER-PROMETHEUS-ZIPKIN-STACK']:  
 kubectl delete -f "$(vRUTA_FILE_SYSTEM)1_grafana-server_[Deployment-Service].yml"
