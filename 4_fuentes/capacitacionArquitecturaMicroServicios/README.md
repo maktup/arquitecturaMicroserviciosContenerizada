@@ -9,9 +9,39 @@ CONTENERIZADO con KUBERNETES manejado.
 El ORDEN de MODULOS que se debe manejar para el DESPLIEGUE (SCRIPTs) respectivo CORRECTO debe ser el siguiente:
 
 1. boot-admin-server
-2. employee-service
-3. department-service
-4. organization-service
+2. utl-capadb
+3. employee-service
+4. department-service
+5. organization-service
+
+
+
+DNS A CONFIGURAR EN EL ARCHIVO 'HOST':
+-------------------------------------
+Las IPs ahi deberian ser manejadas como FIJAS, sino ACTUALIZARLAS constantemente.
+
+
+#------ [CONFIGURACION 'ARQUITECTURA-CONTENERIZADA' ('KUBERNETES' - INGRESS)] ------#
+#-- 'IP de KUBERNETES':
+192.168.99.102  capacitacion.microservicios.employee
+192.168.99.102  capacitacion.microservicios.department
+192.168.99.102  capacitacion.microservicios.organization
+192.168.99.102  capacitacion.microservicios.utlcapadb
+192.168.99.102  capacitacion.microservicios.boot-admin-server
+192.168.99.102  capacitacion.microservicios.zipkin-server
+192.168.99.102  capacitacion.microservicios.grafana-server
+192.168.99.102  capacitacion.microservicios.prometheus-server
+192.168.99.102  capacitacion.microservicios.jaeger-server
+192.168.99.102  capacitacion.microservicios.jaeger-server-view
+192.168.99.102  capacitacion.microservicios.logviewer-server
+#------ [CONFIGURACION 'ARQUITECTURA-CONTENERIZADA' ('KUBERNETES' - INGRESS)] ------#
+
+
+#------------------ [CONFIGURACION 'GENERICOS'] ------------------#
+127.0.0.1  capacitacion.microservicios.logstash
+127.0.0.1  capacitacion.microservicios.elasticsearch
+#------------------ [CONFIGURACION 'GENERICOS'] ------------------#
+
 
 
 INSTALACION / DESINSTALACION:
@@ -20,9 +50,17 @@ Para la INSTACION/DESINSTALACION en WINDOWS se debe ejecutar los siquientes SCRI
 
 - CREATE_Objects_Kubernetes.bat 
 - DELETE_Objects_Kubernetes.bat
-  
+
+Para la INSTACION/DESINSTALACION en LINUX se debe ejecutar los siquientes SCRIPTs. 
+
+- sh ./CREATE_Objects_Kubernetes.sh 
+- sh ./DELETE_Objects_Kubernetes.sh
+   
 IMPORTANTE: Es bueno saber que luego de ELIMINAR el ambiente completo con los SCRIPTs, se debera ACTUALIZAR lo que son los IPs en el archivo HOST (si las IPs NO son estaticas),
-así como la IP definida en objeto 'ENDPOINT' del archivo: '1_stack_[Logstash-Endpoits-Service].yml'
+así como la IP definida en objeto 'ENDPOINT' en los archivos: 
+
+- 1_stack_[Logstash-Endpoits-Service].yml
+- 3_utl-capadb-service_[Endpoits-Service].yml
 
 
 HERRAMIENTAS (MICROSERVICIOS):

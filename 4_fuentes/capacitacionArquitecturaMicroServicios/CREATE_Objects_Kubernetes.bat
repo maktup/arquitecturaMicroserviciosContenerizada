@@ -14,7 +14,7 @@ SET vHORA=%TIME%
 SET vFECHA_ACTUAL=%vFECHA% [%vHORA%]
 SET vTRANSACCION=%vFECHA_ACTUAL% - [INFO]: 
 
-SET vRUTA_FILE_SYSTEM=D:\RepoTortoise_GIT\CAPACITACION\GITHUB\capacitacionMicroservicios\2_contenerizado\1_scripts\
+SET vRUTA_FILE_SYSTEM=D:\R_GIT\CAPA\GITHUB\Microservicios\arquitecturaMicroserviciosContenerizada\1_scripts\
 
 
 ECHO. 
@@ -47,7 +47,8 @@ kubectl create -f "%vRUTA_FILE_SYSTEM%2_organization-service_[Deployment-Service
 ECHO. 
 @ECHO %vTRANSACCION% -- INSTALANDO SCRIPs [UTL-CAPADB]: 
 kubectl create -f "%vRUTA_FILE_SYSTEM%1_utl-capadb-service_[ConfigMap-Secret].yml"
-kubectl create -f "%vRUTA_FILE_SYSTEM%2_utl-capadb-service_[Deployment-Service].yml" --validate=false  
+kubectl create -f "%vRUTA_FILE_SYSTEM%2_utl-capadb-service_[Deployment-Service].yml" --validate=false
+kubectl create -f "%vRUTA_FILE_SYSTEM%3_utl-capadb-service_[Endpoits-Service].yml"
 ECHO.
 @ECHO %vTRANSACCION% -- INSTALANDO SCRIPs [OTHERs: 'GRAFANA-JAEGER-PROMETHEUS-ZIPKIN-STACK']:  
 kubectl create -f "%vRUTA_FILE_SYSTEM%1_grafana-server_[Deployment-Service].yml"

@@ -13,8 +13,8 @@ metadata:
     stage: production
 subsets: 
   - addresses:
-      #IMPORTANTE: Debe ser una IP-FIJA. 
-      - ip: 192.168.137.1
+      #IMPORTANTE: Debe ser una IP-FIJA (SINO CAMBIAR CONSTANTEMENTE). 
+      - ip: 192.168.56.1
     ports:
       - name: http
         #PUERTO de escucha para 'BEATS' del 'LOGSTASH'
@@ -25,7 +25,7 @@ subsets:
 apiVersion: v1
 kind: Service
 metadata:
-  #IMPORTANTE: Debe llamarse igual que el 'Endpoint' creado.
+  #IMPORTANTE: Debe llamarse igual que el 'ENDPOINT' creado.
   name: logstash-external-ip
   namespace: default
   labels:
@@ -34,6 +34,7 @@ metadata:
     stage: production
 spec:
   ports:
+    #IMPORTANTE: Puerto DEFINIDO como INPUT para 'LOGSTASH'.
     - name: http
       port: 5044
       targetPort: 5044
