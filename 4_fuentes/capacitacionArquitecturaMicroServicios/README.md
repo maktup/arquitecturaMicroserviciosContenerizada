@@ -16,7 +16,7 @@ El ORDEN de MODULOS que se debe manejar para el DESPLIEGUE (SCRIPTs) respectivo 
 
 
 
-DNS A CONFIGURAR EN EL ARCHIVO 'HOST':
+'DNS' A CONFIGURAR EN EL ARCHIVO 'HOST':
 -------------------------------------
 Las IPs ahi deberian ser manejadas como FIJAS, sino ACTUALIZARLAS constantemente.
 
