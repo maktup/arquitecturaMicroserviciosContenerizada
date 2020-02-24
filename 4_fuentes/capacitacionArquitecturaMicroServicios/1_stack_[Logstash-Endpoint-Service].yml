@@ -1,6 +1,6 @@
 
 #[ENDPOINTS-SERVICE]
-#1_stack_[Logstash-Endpoits-Service].yml
+#1_stack_[Logstash-Endpoint-Service].yml
 
 apiVersion: v1
 kind: Endpoints
