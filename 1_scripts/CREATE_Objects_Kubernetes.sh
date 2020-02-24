@@ -47,7 +47,7 @@ ECHO
 @ECHO $vTRANSACCION -- INSTALANDO SCRIPs [UTL-CAPADB]: 
 kubectl create -f "$(vRUTA_FILE_SYSTEM)1_utl-capadb-service_[ConfigMap-Secret].yml"
 kubectl create -f "$(vRUTA_FILE_SYSTEM)2_utl-capadb-service_[Deployment-Service].yml" --validate=false
-kubectl create -f "$(vRUTA_FILE_SYSTEM)3_utl-capadb-service_[Endpoits-Service].yml"
+kubectl create -f "$(vRUTA_FILE_SYSTEM)3_utl-capadb-service_[Endpoint-Service].yml"
 ECHO
 @ECHO $vTRANSACCION -- INSTALANDO SCRIPs [OTHERs: 'GRAFANA-JAEGER-PROMETHEUS-ZIPKIN-STACK']:  
 kubectl create -f "$(vRUTA_FILE_SYSTEM)1_grafana-server_[Deployment-Service].yml"
@@ -55,7 +55,7 @@ kubectl create -f "$(vRUTA_FILE_SYSTEM)1_jaeger-server_[Deployment-Service].yml"
 kubectl create -f "$(vRUTA_FILE_SYSTEM)1_prometheus-server_[ConfigMap-Deployment-Service].yml"
 kubectl create -f "$(vRUTA_FILE_SYSTEM)1_zipkin-server_[Deployment-Service].yml"
 kubectl create -f "$(vRUTA_FILE_SYSTEM)1_stack_[Filebeat-ConfigMap-DaemonSet-ClusterRoleBinding-ClusterRole-ServiceAccount].yml"
-kubectl create -f "$(vRUTA_FILE_SYSTEM)1_stack_[Logstash-Endpoits-Service].yml"
+kubectl create -f "$(vRUTA_FILE_SYSTEM)1_stack_[Logstash-Endpoint-Service].yml"
 
 
 ECHO 
