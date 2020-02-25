@@ -33,6 +33,12 @@ ECHO.
 kubectl create -f "%vRUTA_FILE_SYSTEM%1_boot-admin-server_[Secret].yml"
 kubectl create -f "%vRUTA_FILE_SYSTEM%2_boot-admin-server_[Deployment-Service].yml"
 ECHO.
+@ECHO %vTRANSACCION% -- INSTALANDO SCRIPs [UTL-CAPADB]: 
+kubectl create -f "%vRUTA_FILE_SYSTEM%1_utl-capadb-service_[ConfigMap-Secret].yml"
+kubectl create -f "%vRUTA_FILE_SYSTEM%2_utl-capadb-service_[Deployment-Service].yml" --validate=false
+kubectl create -f "%vRUTA_FILE_SYSTEM%3_utl-capadb-service_[Endpoint-Service].yml"
+kubectl create -f "%vRUTA_FILE_SYSTEM%4_utl-capadb-service_[HorizontalPodAutoscaler].yml"
+ECHO.
 @ECHO %vTRANSACCION% -- INSTALANDO SCRIPs [EMPLOYEE-SERVICE]:  
 kubectl create -f "%vRUTA_FILE_SYSTEM%1_employee-service_[ConfigMap-Secret].yml"
 kubectl create -f "%vRUTA_FILE_SYSTEM%2_employee-service_[Deployment-Service].yml" --validate=false
@@ -45,11 +51,6 @@ ECHO.
 kubectl create -f "%vRUTA_FILE_SYSTEM%1_organization-service_[ConfigMap-Secret].yml"
 kubectl create -f "%vRUTA_FILE_SYSTEM%2_organization-service_[Deployment-Service].yml" --validate=false
 ECHO. 
-@ECHO %vTRANSACCION% -- INSTALANDO SCRIPs [UTL-CAPADB]: 
-kubectl create -f "%vRUTA_FILE_SYSTEM%1_utl-capadb-service_[ConfigMap-Secret].yml"
-kubectl create -f "%vRUTA_FILE_SYSTEM%2_utl-capadb-service_[Deployment-Service].yml" --validate=false
-kubectl create -f "%vRUTA_FILE_SYSTEM%3_utl-capadb-service_[Endpoint-Service].yml"
-ECHO.
 @ECHO %vTRANSACCION% -- INSTALANDO SCRIPs [OTHERs: 'GRAFANA-JAEGER-PROMETHEUS-ZIPKIN-STACK']:  
 kubectl create -f "%vRUTA_FILE_SYSTEM%1_grafana-server_[Deployment-Service].yml"
 kubectl create -f "%vRUTA_FILE_SYSTEM%1_jaeger-server_[Deployment-Service].yml"

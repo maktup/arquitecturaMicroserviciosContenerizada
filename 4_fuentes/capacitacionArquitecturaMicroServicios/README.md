@@ -10,12 +10,12 @@ IMPORTANTE:
      Agregando y desagregando ADDONs en 'MINIKUBE': 
  
      minikube addons list
-        
+   
      minikube addons enable ingress 
      minikube addons enable ingress-dns
      minikube addons enable logviewer
      minikube addons enable metrics-server
-        
+  
      minikube addons disable ingress 
      minikube addons disable ingress-dns
      minikube addons disable logviewer
@@ -33,6 +33,14 @@ IMPORTANTE:
 	   
 	 Ejecutar:
 	 @FOR /f "tokens=*" %i IN ('minikube docker-env') DO @%i
+
+
+* NEXUS2:
+  ------ 
+  Se debe levantar la plataforma del 'NEXUS':
+  
+  cd C:\JAVA\NEXUS\nexus-3.15.2-01\bin  
+  nexus console
 
 
 * El ORDEN de MODULOS que se debe manejar para el DESPLIEGUE (SCRIPTs) respectivo CORRECTO debe ser el siguiente:
