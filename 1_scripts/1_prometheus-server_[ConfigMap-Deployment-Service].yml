@@ -43,6 +43,12 @@ data:
         static_configs:
         - targets: ['capacitacion.microservicios.organization']
 
+      - job_name: 'Prometheus-Server -> [utl-capadb]' 
+        metrics_path: /actuator/prometheus
+        scheme: http
+        static_configs:
+        - targets: ['capacitacion.microservicios.utlcapadb']
+
 ---
 
 apiVersion: apps/v1
