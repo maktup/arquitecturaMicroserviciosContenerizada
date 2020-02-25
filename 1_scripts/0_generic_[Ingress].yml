@@ -2,6 +2,21 @@
 #[INGRESS]
 #0_generic_[Ingress].yml
 
+
+apiVersion: configuration.konghq.com/v1
+kind: KongIngress
+metadata:
+  name: gateway-kong-plugin
+proxy:
+  connect_timeout: 5000
+  retries: 10
+  read_timeout: 120000
+  write_timeout: 120000
+
+
+
+
+
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
