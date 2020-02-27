@@ -29,7 +29,7 @@ kubectl create -f "$(vRUTA_FILE_SYSTEM)0_generic_[Ingress].yml"  --validate=fals
 kubectl create -f "$(vRUTA_FILE_SYSTEM)0_generic_[Seguridad_Rol].yml" --validate=false
 ECHO
 @ECHO $vTRANSACCION -- INSTALANDO SCRIPs [BOOT-ADMIN-SERVER]:  
-kubectl create -f "$(vRUTA_FILE_SYSTEM)1_boot-admin-server_[Secret].yml"
+kubectl create -f "$(vRUTA_FILE_SYSTEM)1_boot-admin-server_[ConfigMap-Secret].yml"
 kubectl create -f "$(vRUTA_FILE_SYSTEM)2_boot-admin-server_[Deployment-Service].yml"
 ECHO
 @ECHO $vTRANSACCION -- INSTALANDO SCRIPs [UTL-CAPADB]: 

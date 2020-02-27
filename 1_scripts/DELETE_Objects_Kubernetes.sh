@@ -26,7 +26,7 @@ kubectl delete -f "$(vRUTA_FILE_SYSTEM)0_generic_[Ingress].yml"
 kubectl delete -f "$(vRUTA_FILE_SYSTEM)0_generic_[Seguridad_Rol].yml"
 ECHO
 ECHO $vTRANSACCION -- DESINSTALANDO SCRIPs [BOOT-ADMIN-SERVER]:  
-kubectl delete -f "$(vRUTA_FILE_SYSTEM)1_boot-admin-server_[Secret].yml"
+kubectl delete -f "$(vRUTA_FILE_SYSTEM)1_boot-admin-server_[ConfigMap-Secret].yml"
 kubectl delete -f "$(vRUTA_FILE_SYSTEM)2_boot-admin-server_[Deployment-Service].yml"
 ECHO
 ECHO $vTRANSACCION -- DESINSTALANDO SCRIPs [UTL-CAPADB]: 
