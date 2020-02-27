@@ -7,6 +7,10 @@ kind: ConfigMap
 metadata:
   name: prometheus-server
   namespace: default
+  labels:
+    app: microservicio-prometheus-server
+    role: backend
+    stage: production
 data:
   ###########################################################################################################################################################################
   ###### CONFIGURACION DE 'PHOMETHEUS' AL LEVANTAR EL SERVIDOR, PARA QUE RECONOZCA & SE CONECTA AL: '/actuator/prometheus' DE C/U DE LOS 'MICROSERVICIOS' RESPECTIVOS. ######
@@ -42,6 +46,12 @@ data:
         scheme: http
         static_configs:
         - targets: ['capacitacion.microservicios.organization']
+
+      - job_name: 'Prometheus-Server -> [utl-capadb]' 
+        metrics_path: /actuator/prometheus
+        scheme: http
+        static_configs:
+        - targets: ['capacitacion.microservicios.utlcapadb']
 
 ---
 

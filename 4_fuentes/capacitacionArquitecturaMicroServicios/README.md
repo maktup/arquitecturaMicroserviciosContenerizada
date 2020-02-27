@@ -81,8 +81,8 @@ Las IPs ahi deberian ser manejadas como FIJAS, sino 'ACTUALIZARLAS' constantemen
 
 
 
-INSTALACION / DESINSTALACION:
-----------------------------
+INSTALACION / DESINSTALACION (SERVICIOS):
+----------------------------------------
 Para la INSTACION/DESINSTALACION en 'WINDOWS' se debe ejecutar los siquientes SCRIPTs. 
 
 - CREATE_Objects_Kubernetes.bat 
@@ -98,6 +98,27 @@ así como las IPs definida los objetos 'ENDPOINT' de KUBERNETES:
 
 - 1_stack_[Logstash-Endpoits-Service].yml
 - 3_utl-capadb-service_[Endpoits-Service].yml
+
+
+STACK (ELASTICSEARCH):
+---------------------
+Carga inicial: 
+
+A. ELASTICSEARCH: 
+   $ cd D:\ELASTIC_STACK\ELASTICSEARCH\elasticsearch-7.5.2\bin
+   $ elasticsearch.bat 
+
+B. KIBANA:
+   $ cd D:\ELASTIC_STACK\KIBANA\kibana-7.5.2-windows-x86_64\bin
+   $ kibana.bat 
+
+C. LOGSTASH: (Creamos el directorio 'CONFIGURACIONES' & su archivo)
+   $ cd D:\ELASTIC_STACK\LOGSTASH\logstash-7.5.2
+   $ .\bin\logstash.bat -f .\configuraciones\ETL_CapacitacionMicroservicios_v1.0.conf
+
+D. FILEBEAT: (Configurad: 'filebeat.yml') 
+   $ cd D:\ELASTIC_STACK\BEATS\filebeat-7.5.2-windows-x86_64
+   $ .\filebeat.exe -c .\filebeat.yml
 
 
 
