@@ -14,7 +14,7 @@ vHORA=$(date +%T)
 vFECHA_ACTUAL="$vFECHA [$vHORA]"
 vTRANSACCION="$vFECHA_ACTUAL - [INFO]:" 
 
-vRUTA_FILE_SYSTEM=D:\R_GIT\CAPA\GITHUB\Microservicios\arquitecturaMicroserviciosContenerizada\1_scripts\
+vRUTA_FILE_SYSTEM=D:\R_GIT\CAPA\GITHUB\Micro\arquitecturaMicroserviciosContenerizada\1_scripts\
 
 ECHO 
 ECHO [$vTRANSACCION] -------------------- [INICIO] - [CREACION 'CREACION KUBERNETES'] --------------------

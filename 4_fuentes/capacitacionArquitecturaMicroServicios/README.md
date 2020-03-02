@@ -147,4 +147,26 @@ HERRAMIENTAS (MICROSERVICIOS) - [DESPLEGADAS]:
 - KIBANA SERVER:         http://capacitacion.microservicios.kibana:5601
 - LOGSTASH SERVER:       http://capacitacion.microservicios.logstash:9600
  
-  
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+ 
+REPOSITORIOS (GITHUB):
+---------------------
+
+ARQUITECTURA [CLASICA]:
+----------------------
+https://github.com/maktup/arquitecturaMicroserviciosClasica.git
+https://github.com/maktup/arquitecturaMicroserviciosClasica-properties.git
+
+
+ARQUITECTURA [CONTENERIZADA]:
+----------------------------
+https://github.com/maktup/arquitecturaMicroserviciosContenerizada.git
+
+https://github.com/maktup/utl-capadb.git
+https://github.com/maktup/employee-service.git
+https://github.com/maktup/department-service.git 
+https://github.com/maktup/organization-service.git
+https://github.com/maktup/boot-admin-server.git
+ 
+ 
