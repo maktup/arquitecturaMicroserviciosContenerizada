@@ -14,7 +14,7 @@ SET vHORA=%TIME%
 SET vFECHA_ACTUAL=%vFECHA% [%vHORA%]
 SET vTRANSACCION=%vFECHA_ACTUAL% - [INFO]: 
 
-SET vRUTA_FILE_SYSTEM=D:\R_GIT\CAPA\GITHUB\Microservicios\arquitecturaMicroserviciosContenerizada\1_scripts\
+SET vRUTA_FILE_SYSTEM=D:\R_GIT\CAPA\GITHUB\Micro\arquitecturaMicroserviciosContenerizada\1_scripts\
 
 
 ECHO. 
