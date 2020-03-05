@@ -100,28 +100,6 @@ así como las IPs definida los objetos 'ENDPOINT' de KUBERNETES:
 - 3_utl-capadb-service_[Endpoits-Service].yml
 
 
-STACK (ELASTICSEARCH):
----------------------
-Carga inicial: 
-
-A. ELASTICSEARCH: 
-   $ cd D:\ELASTIC_STACK\ELASTICSEARCH\elasticsearch-7.5.2\bin
-   $ elasticsearch.bat 
-
-B. KIBANA:
-   $ cd D:\ELASTIC_STACK\KIBANA\kibana-7.5.2-windows-x86_64\bin
-   $ kibana.bat 
-
-C. LOGSTASH: (Creamos el directorio 'CONFIGURACIONES' & su archivo)
-   $ cd D:\ELASTIC_STACK\LOGSTASH\logstash-7.5.2
-   $ .\bin\logstash.bat -f .\configuraciones\ETL_CapacitacionMicroservicios_v1.0.conf
-
-D. FILEBEAT: (Configurad: 'filebeat.yml') 
-   $ cd D:\ELASTIC_STACK\BEATS\filebeat-7.5.2-windows-x86_64
-   $ .\filebeat.exe -c .\filebeat.yml
-
-
-
 HERRAMIENTAS (MICROSERVICIOS):
 -----------------------------
  0. MICROMETER: Herramienta que sirve de FACHADA SIMPLE como medio para integrar & enviar METRICAS del ACTUATOR (Monitoreo Externo). 
@@ -147,7 +125,34 @@ HERRAMIENTAS (MICROSERVICIOS) - [DESPLEGADAS]:
 - KIBANA SERVER:         http://capacitacion.microservicios.kibana:5601
 - LOGSTASH SERVER:       http://capacitacion.microservicios.logstash:9600
  
+ 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 
+STACK (ELASTICSEARCH):
+---------------------
+Carga inicial: 
+
+A. ELASTICSEARCH: 
+   $ cd D:\ELASTIC_STACK\ELASTICSEARCH\elasticsearch-7.5.2\bin
+   $ elasticsearch.bat 
+
+B. KIBANA:
+   $ cd D:\ELASTIC_STACK\KIBANA\kibana-7.5.2-windows-x86_64\bin
+   $ kibana.bat 
+
+C. LOGSTASH: (Creamos el directorio 'CONFIGURACIONES' & su archivo)
+   $ cd D:\ELASTIC_STACK\LOGSTASH\logstash-7.5.2
+   $ .\bin\logstash.bat -f .\configuraciones\ETL_CapacitacionMicroservicios_v1.0.conf
+
+D. FILEBEAT: (Configurad: 'filebeat.yml') 
+   $ cd D:\ELASTIC_STACK\BEATS\filebeat-7.5.2-windows-x86_64
+   $ .\filebeat.exe -c .\filebeat.yml
+ 
+ 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
  
 REPOSITORIOS (GITHUB):
@@ -171,6 +176,8 @@ https://github.com/maktup/boot-admin-server.git
  
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------  
 
 PROMETHEUS: Estadisticos (métricas) manejadas por 'ACTUATOR & MICROMETER'.
 ----------  
@@ -282,51 +289,52 @@ QUERYS: ejemplos diferentes:
  
  
  
- 
- 
- 
- 
- 
- 
- 
- 
- GRAFANA: Configuraciones:
- -------
- 1. EXPLORE: 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------  
+
+GRAFANA: Configuraciones de VISUALIZACIÓN  de Estadisticos (métricas) enviadas desde un DATASOURCE ('PROMETHEUS').
+--------  
+  
+ 1. [EXPLORE]: 
     Para realizar QUERYS sobre las métricas.
     
     - avg( http_client_requests_seconds_count ) by( job ) 
     - http_client_requests_seconds_count{ job=~".*",method!="GET" }
    
- 2. CORREO: 
+ 2. [CORREO]: 
     Configuración de SMTP desde .yml para SOBREESCRIBIR con 'ConfigMaps'. 
     
- 3. DATASOURCE:
+    * Configurar en GMAIL el 'ACCESO A APLICACIONES POCO SEGURAS': https://myaccount.google.com/u/0/lesssecureapps?pli=1
+    * Desde el POD ingresar (VALIDAR): 
+      - cat /etc/grafana/grafana.ini 
+    
+ 3. [DATASOURCE]:
     Existen diferentes para en este caso se manejara una conexion con: 'PROMETHEUS'.  
     
     - CONEXION_PROMETHEUS
     - http://capacitacion.microservicios.prometheus-server
     - GET
     
- 4. USUARIOS:
+ 4. [USUARIOS]:
     Creación de USERs, es requerido el envio & confirmacion del CORREO. 
     
     - cesarricardo_guerra19@hotmail.com
     - CESAR GUERRA
     - admin 
     
- 5. GRUPOS:
+ 5. [GRUPOS]:
     Creación de TEAMs & asignacion de USERs.  
     
     - ADMINISTRADORES
     - cesarricardo_guerra19@hotmail.com
     
- 6. FOLDERS: 
+ 6. [FOLDERS]: 
     Creación de DIRECTORIO para agrupacion de 'DASHBOARDs'. 
     
     - CAPACION_MICROSERVICIOS       
 
- 7. DASHBOARD: 
+ 7. [DASHBOARD]: 
     Creación de DIAGRAMAS de diferente tipo:
     
     - Seleccionar 'ADD-QUERY'.
@@ -344,8 +352,12 @@ QUERYS: ejemplos diferentes:
     'DASHBOARD #3':
     - avg( http_client_requests_seconds_count ) by( job ) 
     
+    'DASHBOARD #4 [UNIDO]': Los 3 en 1. 
+    - http_client_requests_seconds_count{ method=~"$PARAM_001" }
+    - http_client_requests_seconds_count{ job=~".*",method!="GET" }
+    - avg( http_client_requests_seconds_count ) by( job ) 
     
- 8. VARIABLES/PARAMETROS:
+ 8. [VARIABLES/PARAMETROS]:
     Creación de VARIABLES de diferentes tipos, para su reutilización (es por 'DASHBOARD'): 
      
    - PARAM_001,  TEXTBOX           [Variable de tipo TEXTBOX]
@@ -353,17 +365,50 @@ QUERYS: ejemplos diferentes:
    - PARAM_003,  INTERVAL => 1,2,3,4,5,6,7,8,9   [Variable de tipo SELECT]
    - PARAM_004,  QUERY    => label_values(http_client_requests_seconds_count, status) , 'CONEXION_PROMETHEUS', 'ALPHABETICAL', 'MULTI-VALUE'  [Variable de tipo QUERY]
       
- 9. PLAYLIST:
+ 9. [PLAYLIST]:
     Creación de PRESENTACIONES automaticas de cada 'DASHBOARD'.
     
     - PLAYLIST_CAPACITACION
     - 1m
+    - StartPaylist => In-Kiosk-Mode  
       
- 10. COMPARTIR: (EXPORT / IMPORT)
+ 10. [COMPARTIR]: 
+     Permite EXPONER para su visusalizacion los DASHBOARDs trabajados. 
+     
+     * 'SNAPSHOT (LOCAL)': 
+       - Expire: 1 Day
+       - URL (se debe cambiar por el DNS): http://localhost:3000/dashboard/snapshot/3ooNCoA4H7p2KJBQN6bwGm5B0Kb4ExbF 
+     
+     * 'SNAPSHOT (PUBLIC)': 
+       - Expire: 1 Day
+       - URL: https://snapshot.raintank.io/dashboard/snapshot/3DJHD8Q7GDdOYMuaR6lrbG6DomoFY7yk
  
- 
- 
- 
- 
+ 11. [ALERTAS]: 
+     Creación de ALERTAS ante alguna REGLA existente. Se pueden realizar para conectar con: SMTP, SLACK, etc.
+     
+     * Configurar 'Notification Channels':
+       - EnviarCorreo_Grafana
+       - Email  
+       - Default (Send on All Allers)
+       - Include Image
+       - Ingresar EMAIL.
+       
+     * Agregar DASHBOARD ('GRAPH'):
+       - sum( logback_events_total )
+       
+     * Agregar la ALERTA & asociar al DASHBOARD (sobre acepta el de: 'GRAPH'):
+       - ALERTA ERROR  1m  5m
+       - WHEN max() OF query(A,5m,now) IS ABOVE 'ingresar #'
+       - Alerting
+       - Alerting  
+       - Asociar al 'Notification Channels' => 'EnviarCorreo_Grafana'
+       - SUBJECT: Buen día, este es un EMAIL de ALERTA generado de la Plataforma GRAFANA debido a que ha habido un FALLA en contra de la REGLA definida. Esto a causa de que se ha sobre pasado el máximo de: [5110].
+                  Por favor revisar la causa. Gracias.
+              
+ 12. ['EXPORT / IMPORT' de DASHBOARDs (PLUGINs)]:      
+     Permite EXPORT los DASHBOARD trabajados para ser luego reutilizados ó IMPORT otros existentes en EXTERNAMENTE. 
+     
+     - 'EXPORT': Es por 'DASHBOARD' ir 'MENU SUPERIOR/Export'. 
+     - 'IMPORT': Se debe de buscar los PLUGINs para MICROMETER & ACTUATOR en: 'https://grafana.com/grafana/dashboards'
  
   
