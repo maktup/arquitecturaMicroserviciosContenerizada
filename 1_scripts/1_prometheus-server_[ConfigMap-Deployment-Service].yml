@@ -12,9 +12,9 @@ metadata:
     role: backend
     stage: production
 data:
-  ###########################################################################################################################################################################
-  ###### CONFIGURACION DE 'PHOMETHEUS' AL LEVANTAR EL SERVIDOR, PARA QUE RECONOZCA & SE CONECTA AL: '/actuator/prometheus' DE C/U DE LOS 'MICROSERVICIOS' RESPECTIVOS. ######
-  ###########################################################################################################################################################################    
+  ################################################################################################################################################################################
+  ###### CONFIGURACION DE 'PHOMETHEUS' PARA QUE AL LEVANTAR EL SERVIDOR, ESTE RECONOZCA & SE CONECTA AL: '/actuator/prometheus' DE C/U DE LOS 'MICROSERVICIOS' RESPECTIVOS. ######
+  ################################################################################################################################################################################    
   #'NOMBRE' DEL ARCHIVO: 'YAMEL'
   prometheus.yml: |
     global:
@@ -29,6 +29,7 @@ data:
       #INGRESAR REGLA - "first_rules.yml"
       #INGRESAR REGLA - "second_rules.yml"
     scrape_configs:
+      #ASIGNA UN NOMBRE AL 'JOB', DEPENDIENDO DEL 'DNS' ENVIADO: 
       - job_name: 'Prometheus-Server -> [employee-service]' 
         metrics_path: /actuator/prometheus
         scheme: http
@@ -81,7 +82,7 @@ spec:
         image: prom/prometheus:latest
         volumeMounts:
           - name: config-volume
-            #USAR SIEMPRE COMO NOMBRE: 'prometheus.yml' 
+            #USAR SIEMPRE COMO NOMBRE: 'prometheus.yml' (este será SOBREESCRITO por el 'ConfigMap')
             mountPath: /etc/prometheus/prometheus.yml
             subPath: prometheus.yml
         ports:
