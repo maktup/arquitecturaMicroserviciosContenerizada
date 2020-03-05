@@ -169,4 +169,201 @@ https://github.com/maktup/department-service.git
 https://github.com/maktup/organization-service.git
 https://github.com/maktup/boot-admin-server.git
  
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+PROMETHEUS: Estadisticos (métricas) manejadas por 'ACTUATOR & MICROMETER'.
+----------  
+ Metricas relacionadas con los 'COMPONENTES INTERNOS' de:
+  
+ *. JVM (uso de memoria, recolección de basura, subprocesos, etc.). 
+ *. Tomcat (sesiones, solicitud / respuesta HTTP, errores, etc.). 
+ *. Grupo de conexión de base de datos, Logback, proceso (hora de inicio, uso de CPU) & sistema (CPU). 
+ *. Carga del sistema, uso de CPU, etc. 
+
+  - http_client_requests_seconds_count          =>  Obtiene la CANTIDAD de REQUEST por cada funcionalidad (URI) ejecutada (*). 
+  - logback_events_total                        =>  Obtiene el TOTAL de EVENTOS ejecutados por cada NIVEL de logs (*).
+  - jdbc_connections_max	                    =>  Obtiene el número máximo de conexiones jdbc registradas por un DataSource (*). 
+  - hikaricp_connections_max	                =>  Obtiene el numero maximo de conexiones (*).   
+  - hikaricp_connections	                    =>  Obtiene el número máximo de conexiones hikaricp disponibles (*).
+  - jvm_buffer_memory_used_bytes	            =>  Obtiene la CANTIDAD de MEMORIA utilizada a la fecha, por cada uno de los MicroServicios (*).
+  - http_server_requests_seconds_sum	        =>  Obtiene el la SUMA de segundos tomados en una solicitud http específica (*). 
+  - process_cpu_usage	                        =>  Obtiene el "uso reciente de la CPU" para el proceso de JVM por MicroServicios (*).     
+  - system_cpu_usage	                        =>  Obtiene el "uso reciente de la CPU" para todo el sistema por MicroServicios (*).        
+  - tomcat_global_error_total	                =>  El número de errores generados en los REQUEST hacia el servidor (*).       
+  - tomcat_threads_config_max_threads	        =>  El número máximo de HILOS disponibles para REQUEST (*). 
+                                                                                                                                               
+  - hikaricp_connections_acquire_seconds_count	=>  Tiempo que tomó adquirir la conexión.                                                                                                                                  
+  - hikaricp_connections_acquire_seconds_max	=>  Tiempo que tomó adquirir la conexión.                                                                                                                                      
+  - hikaricp_connections_acquire_seconds_sum	=>  Tiempo que tomó adquirir la conexión.                                                                                                                                      
+  - hikaricp_connections_active	                =>  Número total de conexiones activas de hikaricp.                                                                                                                                            
+  - hikaricp_connections_creation_seconds_count	=>  Conteo total de tiempo que tomó crear una conexión.                                                                                                                    
+  - hikaricp_connections_creation_seconds_max	=>  Tiempo máximo que tomó crear una conexión.                                                                                                                                   
+  - hikaricp_connections_creation_seconds_sum   =>  Tiempo total que tomó crear todas las conexiones.                                                                                                                        
+  - hikaricp_connections_idle	                =>  Número de conexiones inactivas.                                                                           
+  - hikaricp_connections_min	                =>  Cantidad mínima de conexiones.                                                                                                                                                               
+  - hikaricp_connections_pending	            =>  Número de hilos actualmente en estado pendiente.                                                                                                                                       
+  - hikaricp_connections_timeout_total	        =>  Tiempo de espera total de todas las conexiones.                                                                                                                                  
+  - hikaricp_connections_usage_seconds_count	=>  Tiempo de uso de la conexión.                                                                                                                                              
+  - hikaricp_connections_usage_seconds_max	    =>  Máximo tiempo de uso de la conexión.                                                                                                                                           
+  - hikaricp_connections_usage_seconds_sum	    =>  Suma total del tiempo de uso de la conexión.                                                                                                                               
+  - http_server_requests_seconds_count	        =>  Muestra el recuento de una solicitud http específica junto con el resto de los datos de esa solicitud.                                                                         
+  - http_server_requests_seconds_max	        =>  Muestra la duración máxima de las solicitudes http junto con el resto de los datos de la solicitud.      
+  - jdbc_connections_active	                    =>  Número total de conexiones jdbc activas registradas.                                              
+  - jdbc_connections_min	                    =>  Número mínimo de conexiones jdbc registradas.                                                                                                                                                    
+  - job_data_size_memory	                    =>  Uso de memoria para trabajo específico.                                                                                                                                                          
+  - job_data_size_results	                    =>  Cuántos registros se recuperaron por trabajo específico.                                                                                                                                         
+  - job_timer_seconds_count	                    =>  Tiempo que llevó ejecutar el trabajo en segundos.                                                                                                                                         
+  - job_timer_seconds_max	                    =>  Tiempo máximo que se tardó en ejecutar el trabajo en segundos.                                                                                                                                 
+  - job_timer_seconds_sum	                    =>  Tiempo total que llevó ejecutar el trabajo en segundos.                                                                                                                                      
+  - jobs_size	                                =>  ¿Cuántos JOBs se ejecutaron?.                                                                                                                                                                          
+  - jobs_taskstatus_size	                    =>  Contiene información sobre trabajos que se ejecutaron.                                                                                                                                           
+  - jvm_buffer_count_buffers	                =>  Una estimación del número de buffers en la agrupación.   
+  - jvm_buffer_total_capacity_bytes	            =>  Una estimación de la capacidad total de los buffers en este grupo.                                                                                                                     
+  - jvm_classes_loaded_classes	                =>  El número de clases que se cargan actualmente en la máquina virtual Java.                                                                                                                  
+  - jvm_classes_unloaded_classes_total	        =>  El número total de clases descargadas desde que la máquina virtual Java comenzó a ejecutarse.                                                                                   
+  - jvm_gc_live_data_size_bytes	                =>  Tamaño del grupo de memoria de la generación anterior después de un GC completo.                                                                                                         
+  - jvm_gc_max_data_size_bytes	                =>  Tamaño máximo del grupo de memoria de la generación anterior.                                                                                                                                
+  - jvm_gc_memory_allocated_bytes_total	        =>  Incrementado para un aumento en el tamaño del grupo de memoria de generación joven después de un GC hasta antes del siguiente.                                                       
+  - jvm_gc_memory_promoted_bytes_total	        =>  Recuento de aumentos positivos en el tamaño del grupo de memoria de la generación anterior antes de GC a después de GC.                                                              
+  - jvm_gc_pause_seconds_count	                =>  Número de veces que pasó en pausa GC.                                                                                                                                                        
+  - jvm_gc_pause_seconds_max	                =>  Tiempo máximo empleado en pausa de GC en segundos.                                                                                                                                               
+  - jvm_gc_pause_seconds_sum	                =>  Tiempo total empleado en pausa de GC en segundos.                                                                                                                                              
+  - jvm_memory_committed_bytes	                =>  La cantidad de memoria en bytes que se compromete para que la máquina virtual Java la use.                                                                                                     
+  - jvm_memory_max_bytes	                    =>  La cantidad máxima de memoria en bytes que se puede usar para la administración de memoria.                                                                                                        
+  - jvm_memory_used_bytes	                    =>  La cantidad de memoria utilizada.                                                                                                                                                                    
+  - jvm_threads_daemon_threads	                =>  El número actual de hilos de daemon en vivo.                                                                                                                                                   
+  - jvm_threads_live_threads	                =>  El número actual de subprocesos en vivo, incluidos subprocesos daemon y no daemon.                                                                                                               
+  - jvm_threads_peak_threads	                =>  El número máximo de subprocesos en vivo desde que se inició la máquina virtual Java o se restableció el pico.                                                                                    
+  - jvm_threads_states_threads	                =>  El número actual de hilos que tienen estado NUEVO.                                                
+  - pageaccess_total	                        =>  Número de páginas visitadas por página.                                         
+  - process_files_max_files	                    =>  El recuento máximo de descriptores de archivo.                                                                                                                                                     
+  - process_files_open_files	                =>  El recuento de descriptor de archivo abierto.                                                                                                                                                  
+  - process_start_time_seconds	                =>  Hora de inicio del proceso desde unix epoch.                                                                                                                                                 
+  - process_uptime_seconds	                    =>  El tiempo de actividad de la máquina virtual Java.                                                                                                                                               
+  - sessions_active	                            =>  Número e información de sesiones activas.                                                                                                                                                               
+  - sessions_login_total	                    =>  Número e información de inicios de sesión y usuarios.                                                                                                                                              
+  - system_cpu_count	                        =>  El número de procesadores disponibles para la máquina virtual Java.                                
+  - tomcat_global_received_bytes_total	        =>  Número total de bytes recibidos de solicitudes.                                                                                                                   
+  - tomcat_global_request_max_seconds	        =>  Tiempo máximo que llevó ejecutar una solicitud específica.                                                                                                            
+  - tomcat_global_request_seconds_count	        =>  El número de solicitudes en todos los conectores.                                                                                                                
+  - tomcat_global_request_seconds_sum	        =>  Tiempo total que tomó ejecutar solicitudes.                                                                                                                         
+  - tomcat_global_sent_bytes_total	            =>  Número total de bytes enviados desde solicitudes.                                                                                                                     
+  - tomcat_threads_busy_threads	                =>  Número actual de hilos ocupados.  
+  - tomcat_threads_current_threads	            =>  Número actual de hilos usados por solicitudes.    
+  
+  
+QUERYS: ejemplos diferentes: 
+------
  
+  1. Obtener la CANTIDAD de REQUEST por cada funcionalidad (URI) ejecutada: 
+     http_client_requests_seconds_count 
+  
+  2. Obtener la CANTIDAD de REQUEST de tipo GET que terminaron OK, para el URI: '/utlcapadb/get/organizaciones':  
+     http_client_requests_seconds_count{ method="GET", status="200", uri="/utlcapadb/get/organizaciones" }
+  
+  3. Obtener la CANTIDAD de REQUEST de tipo GET para el URIs: '/utlcapadb/get/empleados', 'utlcapadb/get/departamentos', '/utlcapadb/get/organizaciones':  
+     http_client_requests_seconds_count{ method="GET", uri=~"/utlcapadb/get/empleados|/utlcapadb/get/departamentos|/utlcapadb/get/organizaciones" }
+     
+  4. Obtener la CANTIDAD de REQUEST de tipo GET para TODOS los MicroServicios, pero que NO sean de tipo: GET: 
+     http_client_requests_seconds_count{ job=~".*",method!="GET" }
+ 
+  5. Obtener la CANTIDAD de REQUEST de tipo GET para TODOS el MicroServicio: '[employee-service]', hace 5 minutos:  
+     http_client_requests_seconds_count{ job="Prometheus-Server -> [employee-service]"} offset 5m
+
+  6. Obtener la SUMATORIA de la: MEMORIA MAXIMA - MEMORIA USADA, en MB por cada MicroServicio: 
+     sum by( job )(jvm_memory_max_bytes - jvm_memory_used_bytes) / 1024 / 1024
+     
+  7. Obtener la TOTAL de la: MEMORIA MAXIMA - MEMORIA USADA, en MB por cada MicroServicio: 
+     count by( job )(jvm_memory_max_bytes - jvm_memory_used_bytes) / 1024 / 1024
+  
+  8. Obtener el PROMEDIO de la CANTIDAD de REQUEST, por MicroServicio: 
+     avg( http_client_requests_seconds_count ) by( job )
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ GRAFANA: Configuraciones:
+ -------
+ 1. EXPLORE: 
+    Para realizar QUERYS sobre las métricas.
+    
+    - avg( http_client_requests_seconds_count ) by( job ) 
+    - http_client_requests_seconds_count{ job=~".*",method!="GET" }
+   
+ 2. CORREO: 
+    Configuración de SMTP desde .yml para SOBREESCRIBIR con 'ConfigMaps'. 
+    
+ 3. DATASOURCE:
+    Existen diferentes para en este caso se manejara una conexion con: 'PROMETHEUS'.  
+    
+    - CONEXION_PROMETHEUS
+    - http://capacitacion.microservicios.prometheus-server
+    - GET
+    
+ 4. USUARIOS:
+    Creación de USERs, es requerido el envio & confirmacion del CORREO. 
+    
+    - cesarricardo_guerra19@hotmail.com
+    - CESAR GUERRA
+    - admin 
+    
+ 5. GRUPOS:
+    Creación de TEAMs & asignacion de USERs.  
+    
+    - ADMINISTRADORES
+    - cesarricardo_guerra19@hotmail.com
+    
+ 6. FOLDERS: 
+    Creación de DIRECTORIO para agrupacion de 'DASHBOARDs'. 
+    
+    - CAPACION_MICROSERVICIOS       
+
+ 7. DASHBOARD: 
+    Creación de DIAGRAMAS de diferente tipo:
+    
+    - Seleccionar 'ADD-QUERY'.
+    - Nombrear en GENERAL: 'DASHBOARD #1'
+    - Elegir la 'CONEXION_PROMETHEUS'.
+    - Ingresar el QUERT.
+    - Grabar & Asignar al 'FOLDER'. 
+    
+    'DASHBOARD #1': 
+    - http_client_requests_seconds_count{ method=~"$PARAM_002" }
+    
+    'DASHBOARD #2':
+    - http_client_requests_seconds_count{ job=~".*",method!="GET" }
+     
+    'DASHBOARD #3':
+    - avg( http_client_requests_seconds_count ) by( job ) 
+    
+    
+ 8. VARIABLES/PARAMETROS:
+    Creación de VARIABLES de diferentes tipos, para su reutilización (es por 'DASHBOARD'): 
+     
+   - PARAM_001,  TEXTBOX           [Variable de tipo TEXTBOX]
+   - PARAM_002,  CONSTANT => GET   [Variable de tipo CONSTANT]
+   - PARAM_003,  INTERVAL => 1,2,3,4,5,6,7,8,9   [Variable de tipo SELECT]
+   - PARAM_004,  QUERY    => label_values(http_client_requests_seconds_count, status) , 'CONEXION_PROMETHEUS', 'ALPHABETICAL', 'MULTI-VALUE'  [Variable de tipo QUERY]
+      
+ 9. PLAYLIST:
+    Creación de PRESENTACIONES automaticas de cada 'DASHBOARD'.
+    
+    - PLAYLIST_CAPACITACION
+    - 1m
+      
+ 10. COMPARTIR: (EXPORT / IMPORT)
+ 
+ 
+ 
+ 
+ 
+ 
+  
