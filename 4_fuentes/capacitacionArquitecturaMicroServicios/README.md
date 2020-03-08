@@ -411,4 +411,181 @@ GRAFANA: Configuraciones de VISUALIZACIÓN  de Estadisticos (métricas) enviadas d
      - 'EXPORT': Es por 'DASHBOARD' ir 'MENU SUPERIOR/Export'. 
      - 'IMPORT': Se debe de buscar los PLUGINs para MICROMETER & ACTUATOR en: 'https://grafana.com/grafana/dashboards'
  
+ 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+KIBANA:  
+------
+ 
+DEPURADOR DE 'GROK':
+-------------------
+Esta es una HERRAMIENTA para DEPURAR el PATRÓN que se ingresará en 'LOGSTASH':
+- https://grokdebug.herokuapp.com/
+  
+  
+El FORMATO a aplicar es: %{PATTERN:nombre} ,basado en una lista de PATRONES brindados, que referencian: 'EXPRESIONES REGULARES'.
+ 
+EJEMPLO #1:
+ - Esto: \[ significa NO considera el caracter: [ , en el PATTERN diseñado de salida. 
+ 
+EJEMPLO #2:
+ [2020-01-28 22:14:38.219] [INFO] [logging.pattern.console] | -----> HOLA ESTE ES UN MENSAJE DE PRUEBA
+ 
+ - PATRON DISEÑADO: \[%{TIMESTAMP_ISO8601:fecha}\] \[%{LOGLEVEL:nivel}\] \[%{JAVACLASS:clase}\] \| %{GREEDYDATA:mensaje}   
+ 
+ - SALIDA:  
+ {
+   "fecha": "2020-01-28 22:14:38.219",
+   "mensaje": "-----> HOLA ESTE ES UN MENSAJE DE PRUEBA",
+   "nivel": "INFO",
+   "clase": "logging.pattern.console"
+ }
+ 
+ 
+OPCIONES DEL MENÚ:
+----------------- 
+  
+* [DISCOVER]:
+  - Utilizado para busquedas en LOGs:
+  - Se tiene 2 opciones de LENGUAJES: 'LUCENE' & 'KQL' (Kibana Queue Language).
+  - Los QUERYs son en base a la TRAMA depurada que viene de 'LOGSTASH'.
+  
+    A. 'LUCENE': Más restricción en la QUERY: 
+       - CESAR GUERRA        => SI FUNCIONA
+       - CeSaR GuErRa        => SI FUNCIONA
+       - NOT CESAR GUERRA    => NO FUNCIONA 
+       - NoT CeSar GuErRa    => NO FUNCIONA
+       
+    B. 'KQL': Más opciones en la QUERY: 
+       - CESAR GUERRA        => SI FUNCIONA
+       - CeSaR GuErRa        => SI FUNCIONA
+       - NOT CESAR GUERRA    => SI FUNCIONA 
+       - NoT CeSaR GuErRa    => SI FUNCIONA
+       
+       EJEMPLOS: 
+       - 200 AND RGUERRA                  => Obtiene LOGs en donde encuentre el valor de '200' & 'RGUERRA'. 
+       - 200 OR URL                       => Obtiene LOGs en donde encuentre el valor de '200' o 'URL'. 
+       - nivel:WARN OR nivel:INFO         => Obtiene LOGs 'EXCLUSIVAMENTE' ubicados en la COLUMNA: 'nivel', los valores: 'WARN' o 'INFO'.   
+       - NOT nivel:INFO                   => Obtiene LOGs 'DIFERENTES' al tipo INFO de la columna: 'nivel'.
+       - NOT nivel:INFO AND mensaje:*URL* => Obtiene LOGs 'DIFERENTES' al tipo INFO de la columna: 'nivel' & a la palabra 'URL' en la columna:'mensaje'.
+       - NOT nivel:INFO AND (fecha:"2020-01-*" OR fecha:"2020-02-*") => Obtiene LOGs 'DIFERENTES' al tipo INFO de la columna: 'nivel' & a las 'fechas' en dicho rando.  
+       - NOT nivel:INFO AND (fecha:("2020-01-*" OR "2020-02-*"))     => Obtiene LOGs 'DIFERENTES' al tipo INFO de la columna: 'nivel' & a las 'fechas' en dicho rando [REDUCIDO].  
+       - NOT nivel:INFO AND (fecha:"2020-01-*" TO fecha:"2020-02-*") => Obtiene LOGs 'DIFERENTES' al tipo INFO de la columna: 'nivel' & a las 'fechas' en dicho rando [MEJORADO].  
+       
+  - Se debe 'SAVE' para guardar el QUERY utilizado (se grabará el contenido tal cual de la TABLA)
+  - Para obtenerlo dar 'OPEN' para abrir el QUERY.
+  - Para ver la libreria registrada ir a: 'MENU IZQ/MANAGEMENT/SAVED OBJECTs'.
+  
+    - Guardar 'DISCOVER_01_[QUERY]' =>  NOT nivel:INFO AND (fecha:("2020-01-*" OR "2020-02-*"))
+    - Guardar 'DISCOVER_02_[QUERY]' =>  nivel:INFO OR nivel:ERROR OR nivel:WARN
+   
+  
+* [VISUALIZE]: 
+  - Utilizado para búsquedas de datos 'VISUALMENTE' (diseño). 
+ 
+  1- VISUALIZE_01_[HISTOGRAMA]  
+	 - 'Y-AXIS':  
+       - AGREGATION: Count 
+	 - 'X-AXIS': 
+	   - AGREGATION: 'Date Histogram'
+	   - @timestamp
+        
+  2- VISUALIZE_02_[PIE]
+     - AGREGATION: Count
+     - AGREGATION: Filters 
+       - nivel:INFO    NIVEL [INFO]
+       - nivel:ERROR   NIVEL [ERROR]
+       - nivel:WARN    NIVEL [WARN ]
+       
+  3- VISUALIZE_04_[TABLE]
+     - AGREGATION: Count
+     - LABEL: CANTIDAD
+     BUCKET: 
+     - AGREGATION: Filters  
+       - nivel:INFO
+       - nivel:ERROR
+       - nivel:WARN
+       
+  4- VISUALIZE_05_[METRIC]
+     - AGREGATION: Count
+     - LABEL: LOGs
+     BUCKET: 
+     - AGREGATION: Filters 
+       - nivel:*       TOTAL 
+       - nivel:INFO    NIVEL [INFO]
+       - nivel:ERROR   NIVEL [ERROR]
+       - nivel:WARN    NIVEL [WARN]
+  
+  5- VISUALIZE_03_[GOAL] 
+     - AGREGATION: Count
+     - LABEL: LOGS DE MICROSERVICIOS
+     BUCKET: 
+     - AGREGATION: Filters
+       - objeto:"*utl-capadb*" OR objeto:"*employee-service*" OR objeto:"*department-service*" OR objeto:"*organization-service*"
+     - RANGO:
+       - 0       ==> 1000000
+       - 1000000 ==> 2000000
+       - 2000000 ==> 3000000
+ 
+  6- VISUALIZE_06_[PIE]
+     - AGREGATION: Count
+     - AGREGATION: Filters 
+       - nivel:ERROR AND objeto:"*utl-capadb*"            ERROR [utl-capadb]
+       - nivel:ERROR AND objeto:"*employee-service*"      ERROR [employee-service]
+       - nivel:ERROR AND objeto:"*department-service*"    ERROR [department-service]
+       - nivel:ERROR AND objeto:"*organization-service*"  ERROR [organization-service]
+   
+  7- VISUALIZE_07_[TABLE]
+     - AGREGATION: Count
+     - LABEL: CANTIDAD
+     BUCKET: 
+     - AGREGATION: Filters  
+       - nivel:ERROR AND objeto:"*utl-capadb*"            ERROR [utl-capadb]
+       - nivel:ERROR AND objeto:"*employee-service*"      ERROR [employee-service]
+       - nivel:ERROR AND objeto:"*department-service*"    ERROR [department-service]
+       - nivel:ERROR AND objeto:"*organization-service*"  ERROR [organization-service]
+     - PERCENTAGE COLUMN:  CANTIDAD
+       
+  8- VISUALIZE_08_[MARKDOWN]
+     - IMPORTANTE: los LINKs deben ser de cada 'DASHBOARD' & son desde el '#' hasta ANTES del simbolo '?'
+     
+	 **DASHBOARDs**
+	 ==========
+	
+	 Seleccionar: 
+	 ------------ 
+	
+	 * [**DashBoard #1:**](#/dashboard/59e1d940-6013-11ea-a484-a5d5aee2706f).
+	 * [**DashBoard #2:**](#/dashboard/aa5716d0-60b6-11ea-9536-7183173faa23).
+
+      
+ 
+* [DASHBOARD]: 
+  - Utilizado para la REUTILIZACIÓN diseños de 'VISUALIZE' & 'QUERYS', guardados previamente como OBJETOS. 
+  - Contenido de 'DASHBOARDS': 
+  
+  A- DASHBOARD_01_[GRUPO]: muestra el detalle de los 'NIVELES DE LOGS' de los MICROSERVICIOS. 
+    - VISUALIZE_08_[MARKDOWN]
+    - VISUALIZE_01_[HISTOGRAMA]
+    - VISUALIZE_02_[PIE]
+    - VISUALIZE_04_[TABLE]
+    - VISUALIZE_05_[METRIC]
+    - VISUALIZE_03_[GOAL] 
+    - DISCOVER_02_[QUERY]
+  
+  B- DASHBOARD_02_[GRUPO]: muestra el detalle de FALLAS por cada MICROSERVICIO. 
+    - VISUALIZE_08_[MARKDOWN]
+    - VISUALIZE_01_[HISTOGRAMA]
+    - VISUALIZE_06_[PIE]
+    - VISUALIZE_07_[TABLE]
+ 
+ 
+* [EXPORT / IMPORT]: 
+  - Utilizado para EXPORTAR o IMPORTAR los objetos trabajados. 
+  - Ir: 'MENU IZQ/MANAGEMENT/SAVED OBJECTs'. 
+    - EXPORT => 'TallerMicroservicios_KIBANA_[EXPORT].ndjson'
+    - IMPORT => 'TallerMicroservicios_KIBANA_[EXPORT].ndjson' 
+  
   
