@@ -1,0 +1,801 @@
+{
+	"info": {
+		"_postman_id": "01f3e40d-214d-41e6-ad13-9250393be20e",
+		"name": "Arquitectura_Microservicios_CONTENERIZADA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "EMPLEADOS",
+			"item": [
+				{
+					"name": "consultarEmpleadosAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.employee/employeeservice/get/empleados",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"employee"
+							],
+							"path": [
+								"employeeservice",
+								"get",
+								"empleados"
+							]
+						},
+						"description": "consultarEmpleadosAll"
+					},
+					"response": []
+				},
+				{
+					"name": "consultarEmpleadosPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.employee/employeeservice/get/empleados/1",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"employee"
+							],
+							"path": [
+								"employeeservice",
+								"get",
+								"empleados",
+								"1"
+							]
+						},
+						"description": "consultarEmpleadosPorId"
+					},
+					"response": []
+				},
+				{
+					"name": "consultarEmpleadosPorDepartamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.employee/employeeservice/get/empleados-departamento/1",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"employee"
+							],
+							"path": [
+								"employeeservice",
+								"get",
+								"empleados-departamento",
+								"1"
+							]
+						},
+						"description": "consultarEmpleadosPorDepartamento"
+					},
+					"response": []
+				},
+				{
+					"name": "agregarEmpleado",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{   \r\n\t  \"nombre\": \"PAOLO GUERRERO\", \r\n\t  \"edad\":   35, \r\n\t  \"rol\":    \"CONSULTOR\",\r\n\t  \r\n\t  \"idDep\":  \"1\" \r\n\t}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://capacitacion.microservicios.employee/employeeservice/post/empleados",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"employee"
+							],
+							"path": [
+								"employeeservice",
+								"post",
+								"empleados"
+							]
+						},
+						"description": "agregarEmpleado"
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarEmpleado",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.employee/employeeservice/delete/empleados/14",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"employee"
+							],
+							"path": [
+								"employeeservice",
+								"delete",
+								"empleados",
+								"14"
+							]
+						},
+						"description": "eliminarEmpleado"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "DEPARTAMENTOS",
+			"item": [
+				{
+					"name": "consultardepartamentosAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.department/departmentservice/get/departamentos",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"department"
+							],
+							"path": [
+								"departmentservice",
+								"get",
+								"departamentos"
+							]
+						},
+						"description": "consultardepartamentosAll"
+					},
+					"response": []
+				},
+				{
+					"name": "consultardepartamentosPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.department/departmentservice/get/departamentos/1",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"department"
+							],
+							"path": [
+								"departmentservice",
+								"get",
+								"departamentos",
+								"1"
+							]
+						},
+						"description": "consultardepartamentosPorId"
+					},
+					"response": []
+				},
+				{
+					"name": "consultardepartamentosPorDepartamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.department/departmentservice/get/departamentos-organizacion/1",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"department"
+							],
+							"path": [
+								"departmentservice",
+								"get",
+								"departamentos-organizacion",
+								"1"
+							]
+						},
+						"description": "consultardepartamentosPorDepartamento"
+					},
+					"response": []
+				},
+				{
+					"name": "agregarDepartamento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{    \r\n\t  \"nombre\": \"RRHH\",  \r\n\t  \r\n      \"idOrg\":  \"1\" \r\n\t}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://capacitacion.microservicios.department/departmentservice/post/departamentos",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"department"
+							],
+							"path": [
+								"departmentservice",
+								"post",
+								"departamentos"
+							]
+						},
+						"description": "agregarDepartamento"
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarDepartamento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.department/departmentservice/delete/departamentos/5",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"department"
+							],
+							"path": [
+								"departmentservice",
+								"delete",
+								"departamentos",
+								"5"
+							]
+						},
+						"description": "eliminarDepartamento"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ORGANIZACION",
+			"item": [
+				{
+					"name": "consultarorganizacionesAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.organization/organizationservice/get/organizaciones",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"organization"
+							],
+							"path": [
+								"organizationservice",
+								"get",
+								"organizaciones"
+							]
+						},
+						"description": "consultarorganizacionesAll"
+					},
+					"response": []
+				},
+				{
+					"name": "consultarorganizacionesPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.organization/organizationservice/get/organizaciones/1",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"organization"
+							],
+							"path": [
+								"organizationservice",
+								"get",
+								"organizaciones",
+								"1"
+							]
+						},
+						"description": "consultarorganizacionesPorId"
+					},
+					"response": []
+				},
+				{
+					"name": "agregarOrganizacion",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{    \r\n\t  \"nombre\":    \"AMAZON\", \r\n\t  \"direccion\": \"Calle Chincheros 121, La Molina\"   \r\n\t}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://capacitacion.microservicios.organization/organizationservice/post/organizaciones",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"organization"
+							],
+							"path": [
+								"organizationservice",
+								"post",
+								"organizaciones"
+							]
+						},
+						"description": "agregarOrganizacion"
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarOrganizacion",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.organization/organizationservice/delete/organizaciones/3",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"organization"
+							],
+							"path": [
+								"organizationservice",
+								"delete",
+								"organizaciones",
+								"3"
+							]
+						},
+						"description": "eliminarOrganizacion"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "CAPADB",
+			"item": [
+				{
+					"name": "consultarEmpleadosAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://capacitacion.microservicios.utlcapadb/utlcapadb/get/empleados",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"utlcapadb"
+							],
+							"path": [
+								"utlcapadb",
+								"get",
+								"empleados"
+							]
+						},
+						"description": "consultarEmpleadosAll"
+					},
+					"response": []
+				},
+				{
+					"name": "consultarEmpleadosPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.utlcapadb/utlcapadb/get/empleados/1",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"utlcapadb"
+							],
+							"path": [
+								"utlcapadb",
+								"get",
+								"empleados",
+								"1"
+							]
+						},
+						"description": "consultarEmpleadosPorId"
+					},
+					"response": []
+				},
+				{
+					"name": "consultarEmpleadosPorDepartamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.utlcapadb/utlcapadb/get/empleados-departamento/1",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"utlcapadb"
+							],
+							"path": [
+								"utlcapadb",
+								"get",
+								"empleados-departamento",
+								"1"
+							]
+						},
+						"description": "consultarEmpleadosPorDepartamento"
+					},
+					"response": []
+				},
+				{
+					"name": "agregarEmpleado",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{   \r\n\t  \"nombre\": \"PAOLO GUERRERO\", \r\n\t  \"edad\":   35, \r\n\t  \"rol\":    \"CONSULTOR\",\r\n\t  \r\n\t  \"idDep\":  \"1\" \r\n\t}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://capacitacion.microservicios.utlcapadb/utlcapadb/post/empleados",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"utlcapadb"
+							],
+							"path": [
+								"utlcapadb",
+								"post",
+								"empleados"
+							]
+						},
+						"description": "agregarEmpleado"
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarEmpleado",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://capacitacion.microservicios.utlcapadb/utlcapadb/delete/empleados/13",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"utlcapadb"
+							],
+							"path": [
+								"utlcapadb",
+								"delete",
+								"empleados",
+								"13"
+							]
+						},
+						"description": "eliminarEmpleado"
+					},
+					"response": []
+				},
+				{
+					"name": "consultarDepartamentosAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.utlcapadb/utlcapadb/get/departamentos",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"utlcapadb"
+							],
+							"path": [
+								"utlcapadb",
+								"get",
+								"departamentos"
+							]
+						},
+						"description": "consultarDepartamentosAll"
+					},
+					"response": []
+				},
+				{
+					"name": "consultarDepartamentosPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.utlcapadb/utlcapadb/get/departamentos/1",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"utlcapadb"
+							],
+							"path": [
+								"utlcapadb",
+								"get",
+								"departamentos",
+								"1"
+							]
+						},
+						"description": "consultarDepartamentosPorId"
+					},
+					"response": []
+				},
+				{
+					"name": "consultarDepartamentosPorEmpleados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.utlcapadb/utlcapadb/get/departamentos-organizacion/2",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"utlcapadb"
+							],
+							"path": [
+								"utlcapadb",
+								"get",
+								"departamentos-organizacion",
+								"2"
+							]
+						},
+						"description": "consultarDepartamentosPorEmpleados"
+					},
+					"response": []
+				},
+				{
+					"name": "agregarDepartamento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{    \r\n\t  \"nombre\": \"RRHH1\",  \r\n\t  \r\n      \"idOrg\":  \"1\" \r\n\t}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://capacitacion.microservicios.utlcapadb/utlcapadb/post/departamentos",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"utlcapadb"
+							],
+							"path": [
+								"utlcapadb",
+								"post",
+								"departamentos"
+							]
+						},
+						"description": "agergarDepartamento"
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarDepartamento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.utlcapadb/utlcapadb/delete/departamentos/19",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"utlcapadb"
+							],
+							"path": [
+								"utlcapadb",
+								"delete",
+								"departamentos",
+								"19"
+							]
+						},
+						"description": "eliminarDepartamento"
+					},
+					"response": []
+				},
+				{
+					"name": "consultarOrganizacionesAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.utlcapadb/utlcapadb/get/organizaciones",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"utlcapadb"
+							],
+							"path": [
+								"utlcapadb",
+								"get",
+								"organizaciones"
+							]
+						},
+						"description": "consultarOrganizacionesAll"
+					},
+					"response": []
+				},
+				{
+					"name": "consultarOrganizacionesPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.utlcapadb/utlcapadb/get/organizaciones/1",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"utlcapadb"
+							],
+							"path": [
+								"utlcapadb",
+								"get",
+								"organizaciones",
+								"1"
+							]
+						},
+						"description": "consultarOrganizacionesPorId"
+					},
+					"response": []
+				},
+				{
+					"name": "agregarOrganizacion",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{    \r\n\t  \"nombre\":    \"AMAZON\", \r\n\t  \"direccion\": \"Calle Chincheros 121, La Molina\"   \r\n\t}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://capacitacion.microservicios.utlcapadb/utlcapadb/post/organizaciones",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"utlcapadb"
+							],
+							"path": [
+								"utlcapadb",
+								"post",
+								"organizaciones"
+							]
+						},
+						"description": "agregarOrganizacion"
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarOrganizacion",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://capacitacion.microservicios.utlcapadb/utlcapadb/delete/organizaciones/17",
+							"protocol": "http",
+							"host": [
+								"capacitacion",
+								"microservicios",
+								"utlcapadb"
+							],
+							"path": [
+								"utlcapadb",
+								"delete",
+								"organizaciones",
+								"17"
+							]
+						},
+						"description": "eliminarOrganizacion"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
