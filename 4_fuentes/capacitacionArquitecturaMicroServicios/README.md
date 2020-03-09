@@ -4,6 +4,11 @@ IMPORTANTE:
 * Proyecto PRINCIPAL que permite la 'COMPILACION & EMPAQUETAMIENTO & EJECUCION' de TODOS los proyectos (MODULOS) que forman parte del DUMMY de 'ARQUITECTURA de MICROSERVICIOS'
   CONTENERIZADO con KUBERNETES manejado. 
 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+-------------------------------------------------------------------------- [KUBERNETES] ------------------------------------------------------------------------- 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 * Se debe de ACTIVAR en KUBERNETES lo siguiente:
 
   A. PLUGINs:
@@ -35,27 +40,13 @@ IMPORTANTE:
 	 @FOR /f "tokens=*" %i IN ('minikube docker-env') DO @%i
 
 
-* NEXUS2:
-  ------ 
-  Se debe levantar la plataforma del 'NEXUS':
-  
-  cd C:\JAVA\NEXUS\nexus-3.15.2-01\bin  
-  nexus console
-
-
-* El ORDEN de MODULOS que se debe manejar para el DESPLIEGUE (SCRIPTs) respectivo CORRECTO debe ser el siguiente:
-
-  1. boot-admin-server
-  2. utl-capadb
-  3. employee-service
-  4. department-service
-  5. organization-service
-
-
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+-------------------------------------------------------------------------- [DNS / HOST] ------------------------------------------------------------------------- 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 'DNS' A CONFIGURAR EN EL ARCHIVO 'HOST':
 -------------------------------------
-Las IPs ahi deberian ser manejadas como FIJAS, sino 'ACTUALIZARLAS' constantemente a nivel de HOST.
+Las IPs deberían ser manejadas como 'FIJAS', sino 'ACTUALIZARLAS' constantemente a nivel de HOST.
 
 
 #------ [CONFIGURACION 'ARQUITECTURA-CONTENERIZADA' ('KUBERNETES' - INGRESS)] ------#
@@ -77,28 +68,43 @@ Las IPs ahi deberian ser manejadas como FIJAS, sino 'ACTUALIZARLAS' constantemen
 127.0.0.1  capacitacion.microservicios.logstash
 127.0.0.1  capacitacion.microservicios.elasticsearch
 127.0.0.1  capacitacion.microservicios.kibana
+127.0.0.1  capacitacion.microservicios.nexus2
 #------------------ [CONFIGURACION 'GENERICOS'] ------------------#
 
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+---------------------------------------------------------- [INSTALACION / DESINSTALACION (SERVICIOS)] ----------------------------------------------------------- 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+* El ORDEN de MODULOS que se debe manejar para el DESPLIEGUE (SCRIPTs) respectivo CORRECTO debe ser el siguiente:
 
-INSTALACION / DESINSTALACION (SERVICIOS):
-----------------------------------------
-Para la INSTACION/DESINSTALACION en 'WINDOWS' se debe ejecutar los siquientes SCRIPTs. 
+  1. boot-admin-server
+  2. utl-capadb
+  3. employee-service
+  4. department-service
+  5. organization-service
 
-- CREATE_Objects_Kubernetes.bat 
-- DELETE_Objects_Kubernetes.bat
+* Para la 'INSTACION/DESINSTALACION' en 'WINDOWS' se debe ejecutar los siquientes SCRIPTs. 
 
-Para la INSTACION/DESINSTALACION en 'LINUX' se debe ejecutar los siquientes SCRIPTs. 
+  - CREATE_Objects_Kubernetes.bat 
+  - DELETE_Objects_Kubernetes.bat
 
-- sh ./CREATE_Objects_Kubernetes.sh 
-- sh ./DELETE_Objects_Kubernetes.sh
+* Para la INSTACION/DESINSTALACION en 'LINUX' se debe ejecutar los siquientes SCRIPTs. 
+
+  - sh ./CREATE_Objects_Kubernetes.sh 
+  - sh ./DELETE_Objects_Kubernetes.sh
+  
    
-IMPORTANTE: Es bueno saber que luego de ELIMINAR el ambiente completo con los SCRIPTs, se debera ACTUALIZAR lo que son los IPs en el archivo HOST (si las IPs NO son estaticas),
-así como las IPs definida los objetos 'ENDPOINT' de KUBERNETES: 
+* IMPORTANTE: Es bueno saber que luego de ELIMINAR el ambiente completo con los SCRIPTs, se debera ACTUALIZAR lo que son los IPs en el archivo HOST (si las IPs NO son estaticas),
+  así como las IPs definida los objetos 'ENDPOINT' de KUBERNETES: 
 
-- 1_stack_[Logstash-Endpoits-Service].yml
-- 3_utl-capadb-service_[Endpoits-Service].yml
+  - 1_stack_[Logstash-Endpoits-Service].yml
+  - 3_utl-capadb-service_[Endpoits-Service].yml
 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+------------------------------------------------------------------------- [HERRAMIENTAS] ------------------------------------------------------------------------ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 HERRAMIENTAS (MICROSERVICIOS):
 -----------------------------
@@ -109,9 +115,7 @@ HERRAMIENTAS (MICROSERVICIOS):
                 enviados con el ACTUATOR por el MICROMETER. 
  4. GRAFANA:    Herramienta de MONITORIZACIÓN para MULTRIPLES DATASOURCES (Prometheus, BDs, ElasticSearch, Graphite, Kiali etc), que permite visualizar & 
                 generar DASHBOARs así como enviar ALERTAS & REGLAS.  
- 5. KIALI:      Herramienta que proporciona métricas detalladas, una integración básica de GRAFANA, está disponible para consultas avanzadas. 
-                El rastreo distribuido se proporciona integrando JAEGER
-
+ 
  
 HERRAMIENTAS (MICROSERVICIOS) - [DESPLEGADAS]:
 --------------------------------------------- 
@@ -127,13 +131,166 @@ HERRAMIENTAS (MICROSERVICIOS) - [DESPLEGADAS]:
  
  
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+--------------------------------------------------------------------------- [POSTMAN] --------------------------------------------------------------------------- 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+ 
+* IMPORTAR 'SCRIPTs': 
+  ------------------ 
+  - CLASICA:       capacitacionMicroservicios_CLASICA.postman_collection.json
+  - CONTENERIZADA: capacitacionMicroservicios_CONTENERIZADA.postman_collection.json
+  
+ 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+---------------------------------------------------------------------------- [JMETER] --------------------------------------------------------------------------- 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+ 
+* IMPORTAR 'SCRIPT': 
+  ----------------- 
+  - Test_AutoScaling_HTTP_JMETER.jmx 
+ 
+  
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+---------------------------------------------------------------------------- [MAVEN] ---------------------------------------------------------------------------- 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 
-STACK (ELASTICSEARCH):
----------------------
-Carga inicial: 
+* RUTA CONFIG:  C:\JAVA\MAVEN\SOFTWARE\apache-maven-3.6.0_local\conf\settings.xml
 
+  - REFERENCIAR REPOSITORIO:  <localRepository>C:\JAVA\MAVEN\REPOSITORIO\MavenRepo_3.6_Local</localRepository>  
+  
+ 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+---------------------------------------------------------------------------- [NEXUS] ---------------------------------------------------------------------------- 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+IMPORTANTE: Se debe levantar la plataforma del 'NEXUS':
+---------- 
+ $ cd C:\JAVA\NEXUS2\nexus-2.14.12-02-bundle\nexus-2.14.12-02
+ - nexus console start
+
+- CONSOLA WEB:  http://capacitacion.microservicios.nexus2:8081/nexus 
+- ACCESO:       admin/ admin123 
+
+
+REPOSITORIO [NEXUS]: 
+------------------- 
+  
+A. 'ADD HOSTED REPOSITORY': Reposirio PRINCIPAL & CENTRAL de la EMPRESA. 
+  
+   * Repository ID:                    CapaMicroserviciosRepositorioNexus
+   * Repository Name:                  CapaMicroserviciosRepositorioNexus 
+   * Override Local Storage Location:  C:\JAVA\NEXUS2\nexus-2.14.12-02-bundle\sonatype-work\nexus\storage\CapaMicroserviciosRepositorioNexus
+     
+   - CREARÁ los directorios: [.index, .meta, .nexus & archetype-catalog.xml].  
+   - URL (LOCAL):    http://capacitacion.microservicios.nexus2:8081/nexus/content/repositories/CapaMicroserviciosRepositorioNexus/
+   - NO-IP:          http://repositorio-nexus.ddns.net:8081/nexus/content/repositories/CapaMicroserviciosRepositorioNexus/        
+             
+B. 'ADD PROXY REPOSITORY': Repositorios EXTERNOS para conectar & reutilizar.   
+
+    - Repository ID:           REPO_search.repo1.maven.org       
+	- Repository Name:         REPO_search.repo1.maven.org       [YA EXISTE: 'ACTUALIZAR']
+	- Remote Storage Location: https://repo1.maven.org/maven2/  
+		  
+	- Repository ID:           REPO_search.maven.org
+	- Repository Name:         REPO_search.maven.org
+	- Remote Storage Location: http://search.maven.org/classic      
+		  
+	- Repository ID:           REPO_jboss.com_Release
+	- Repository Name:         REPO_jboss.com_Release
+	- Remote Storage Location: http://repository.jboss.com    
+		 
+	- Repository ID:           REPO_springsource_Release
+	- Repository Name:         REPO_springsource_Release
+	- Remote Storage Location: https://maven.springframework.org/milestone/ 
+		 
+	- Repository ID:           REPO_mvnrepository.com
+	- Repository Name:         REPO_mvnrepository.com
+	- Remote Storage Location: http://mvnrepository.com 
+		 
+    - Repository ID:           REPO_objectweb
+	- Repository Name:         REPO_objectweb
+	- Remote Storage Location: http://maven.objectweb.org/maven2 
+		 
+	- Repository ID:           REPO_ops4j
+	- Repository Name:         REPO_ops4j
+	- Remote Storage Location: http://repository.ops4j.org/maven2 
+		 
+	- Repository ID:           REPO_redhat-ga
+	- Repository Name:         REPO_redhat-ga
+	- Remote Storage Location: http://maven.repository.redhat.com/techpreview/all 
+		 
+	- Repository ID:           REPO_apache-maven_Snapshot
+	- Repository Name:         REPO_apache-maven_Snapshot
+	- Remote Storage Location: http://repository.apache.org/snapshots 
+		 
+	- Repository ID:           REPO_com.springsource_Snapshot
+	- Repository Name:         REPO_com.springsource_Snapshot
+	- Remote Storage Location: https://maven.springframework.org/snapshot 
+		                                            
+	- Repository ID:           REPO_jboss.org_Snapshot
+	- Repository Name:         REPO_jboss.org_Snapshot
+	- Remote Storage Location: http://snapshots.jboss.org/maven2   
+
+
+C. 'ADD PROXY GROUP': Agrupación de Repositorios 'EXTERNOS'.
+    (IMPORTANTE: El ORDEN asignado SI importa). 
+  
+	* Group ID:   GROUP_Proxy_CapaMicroservicios
+	* Group Name: GROUP_Proxy_CapaMicroservicios    
+    * Provider:   Maven2
+     
+    - Jalar a la IZQ. todos los REPO_*  
+    - URL (LOCAL): http://capacitacion.microservicios.nexus2:8081/nexus/content/groups/GROUP_Proxy_CapaMicroservicios/
+    - NO-IP:       http://repositorio-nexus.ddns.net:8081/nexus/content/groups/GROUP_Proxy_CapaMicroservicios/
+ 
+  
+    <!-- AGREGAR EN: POM.xml [TODOS LOS 'MICROSERVICIOS'] --> 
+	<repositories>
+		<repository>
+			<id>GROUP_Proxy_CapaMicroservicios</id>
+			<name>Repositorio CENTRAL proporcionado por NEXUS 2 [GRUPO-PROXY]</name>
+			<url>http://localhost:8081/nexus/content/groups/GROUP_Proxy_CapaMicroservicios/</url> 
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+ 
+ 
+    <!-- AGREGAR EN: conf\settings.xml [SOLO EN CASO DE APLICAR SEGURIDAD] -->  
+    <server>
+      <id>GROUP_Proxy_CapaMicroservicios</id> 
+      <username>admin</username> 
+      <password>admin123</password> 
+    </server> 
+ 
+ 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+-------------------------------------------------------------------- [STACK (ELASTICSEARCH)] -------------------------------------------------------------------- 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+CONFIGURAR: 
+----------
+A. ELASTICSEARCH: 
+   $ cd D:\ELASTIC_STACK\ELASTICSEARCH\elasticsearch-7.5.2\config
+   - elasticsearch.yml
+
+B. KIBANA:
+   - NO requiere.   
+ 
+C. LOGSTASH: (Creamos el directorio 'CONFIGURACIONES' & su archivo)
+   $ cd D:\ELASTIC_STACK\LOGSTASH\logstash-7.5.2
+   $ cd configuraciones
+   - ETL_CapacitacionMicroservicios_v1.0.conf
+
+D. FILEBEAT: 
+   $ cd D:\ELASTIC_STACK\BEATS\filebeat-7.5.2-windows-x86_64
+   - filebeat.yml
+
+EJECUTAR: 
+-------- 
 A. ELASTICSEARCH: 
    $ cd D:\ELASTIC_STACK\ELASTICSEARCH\elasticsearch-7.5.2\bin
    $ elasticsearch.bat 
@@ -142,23 +299,20 @@ B. KIBANA:
    $ cd D:\ELASTIC_STACK\KIBANA\kibana-7.5.2-windows-x86_64\bin
    $ kibana.bat 
 
-C. LOGSTASH: (Creamos el directorio 'CONFIGURACIONES' & su archivo)
+C. LOGSTASH: 
    $ cd D:\ELASTIC_STACK\LOGSTASH\logstash-7.5.2
    $ .\bin\logstash.bat -f .\configuraciones\ETL_CapacitacionMicroservicios_v1.0.conf
 
-D. FILEBEAT: (Configurad: 'filebeat.yml') 
+D. FILEBEAT:  
    $ cd D:\ELASTIC_STACK\BEATS\filebeat-7.5.2-windows-x86_64
    $ .\filebeat.exe -c .\filebeat.yml
  
  
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+-------------------------------------------------------------------- [REPOSITORIOS (GITHUB)] -------------------------------------------------------------------- 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
- 
-REPOSITORIOS (GITHUB):
----------------------
 
-ARQUITECTURA [CLASICA]:
+ARQUITECTURA [CLÁSICA]:
 ----------------------
 https://github.com/maktup/arquitecturaMicroserviciosClasica.git
 https://github.com/maktup/arquitecturaMicroserviciosClasica-properties.git
@@ -176,12 +330,13 @@ https://github.com/maktup/boot-admin-server.git
  
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+-------------------------------------------------------------------------- [PROMETHEUS] ------------------------------------------------------------------------- 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------  
 
-PROMETHEUS: Estadisticos (métricas) manejadas por 'ACTUATOR & MICROMETER'.
-----------  
- Metricas relacionadas con los 'COMPONENTES INTERNOS' de:
+IMPORTANTE: Estadisticos (métricas) manejadas por 'ACTUATOR & MICROMETER'.
+----------
+   
+Metricas relacionadas con los 'COMPONENTES INTERNOS' de:
   
  *. JVM (uso de memoria, recolección de basura, subprocesos, etc.). 
  *. Tomcat (sesiones, solicitud / respuesta HTTP, errores, etc.). 
@@ -290,11 +445,11 @@ QUERYS: ejemplos diferentes:
  
  
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+--------------------------------------------------------------------------- [GRAFANA] --------------------------------------------------------------------------- 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------  
 
-GRAFANA: Configuraciones de VISUALIZACIÓN  de Estadisticos (métricas) enviadas desde un DATASOURCE ('PROMETHEUS').
---------  
+IMPORTANTE: Configuraciones de VISUALIZACIÓN  de Estadisticos (métricas) enviadas desde un DATASOURCE ('PROMETHEUS').
+----------
   
  1. [EXPLORE]: 
     Para realizar QUERYS sobre las métricas.
@@ -413,24 +568,23 @@ GRAFANA: Configuraciones de VISUALIZACIÓN  de Estadisticos (métricas) enviadas d
  
  
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+--------------------------------------------------------------------------- [KIBANA] ---------------------------------------------------------------------------- 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------  
 
-KIBANA:  
-------
- 
 DEPURADOR DE 'GROK':
 -------------------
-Esta es una HERRAMIENTA para DEPURAR el PATRÓN que se ingresará en 'LOGSTASH':
+Esta es una 'HERRAMIENTA' para DEPURACIÓN del PATRÓN que se ingresará en 'LOGSTASH':
 - https://grokdebug.herokuapp.com/
   
   
 El FORMATO a aplicar es: %{PATTERN:nombre} ,basado en una lista de PATRONES brindados, que referencian: 'EXPRESIONES REGULARES'.
  
 EJEMPLO #1:
+----------
  - Esto: \[ significa NO considera el caracter: [ , en el PATTERN diseñado de salida. 
  
 EJEMPLO #2:
+----------
  [2020-01-28 22:14:38.219] [INFO] [logging.pattern.console] | -----> HOLA ESTE ES UN MENSAJE DE PRUEBA
  
  - PATRON DISEÑADO: \[%{TIMESTAMP_ISO8601:fecha}\] \[%{LOGLEVEL:nivel}\] \[%{JAVACLASS:clase}\] \| %{GREEDYDATA:mensaje}   
@@ -556,7 +710,7 @@ OPCIONES DEL MENÚ:
 	
 	 Seleccionar: 
 	 ------------ 
-	
+	 	
 	 * [**DashBoard #1:**](#/dashboard/59e1d940-6013-11ea-a484-a5d5aee2706f).
 	 * [**DashBoard #2:**](#/dashboard/aa5716d0-60b6-11ea-9536-7183173faa23).
 
@@ -584,7 +738,7 @@ OPCIONES DEL MENÚ:
  
 * [EXPORT / IMPORT]: 
   - Utilizado para EXPORTAR o IMPORTAR los objetos trabajados. 
-  - Ir: 'MENU IZQ/MANAGEMENT/SAVED OBJECTs'. 
+  - Ir a: 'MENU IZQ/MANAGEMENT/SAVED OBJECTs'. 
     - EXPORT => 'TallerMicroservicios_KIBANA_[EXPORT].ndjson'
     - IMPORT => 'TallerMicroservicios_KIBANA_[EXPORT].ndjson' 
   
