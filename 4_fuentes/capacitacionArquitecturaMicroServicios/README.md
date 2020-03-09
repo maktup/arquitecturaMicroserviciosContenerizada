@@ -4,41 +4,90 @@ IMPORTANTE:
 * Proyecto PRINCIPAL que permite la 'COMPILACION & EMPAQUETAMIENTO & EJECUCION' de TODOS los proyectos (MODULOS) que forman parte del DUMMY de 'ARQUITECTURA de MICROSERVICIOS'
   CONTENERIZADO con KUBERNETES manejado. 
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+-------------------------------------------------------------- [VERSIONES DE TECNOLOGÍA MANEJADAS] --------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+- CHOCO:    v0.10.15
+- MINIKUBE: v1.6.2
+- KUBECTL:  v1.17.1
+- DOCKER:   v19.03
+- STACK (EX-ELK):
+  - BEATS:         v7.5.2 (FileBeat)
+  - ELASTICSEARCH: v7.5.2
+  - KIBANA:        v7.5.2
+  - LOGSTASH:      v7.5.2
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+-------------------------------------------------------------------------- [CHOCOLATEY] ------------------------------------------------------------------------- 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ IMPORTANTE: TODA la instalación de 'KUBERNETES', 'DOCKER' se realizará por medio de CHOCOLATE.  
+ ----------- 
+ 
+ Ejecutar: 'choco list', que muestra la lista de componentes manejados por CHOCOLATE.   
+
+ 1. INSTALAR 'CHOCOLATEY': 
+    - Desde 'PowerShell': 
+    $ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))   
+  
+ 2. INSTALACIONES: Este proceso INSTALA: 'kubernetes-cli' & 'Minikube'. 
+    choco install minikube --force 
+    choco install kubernetes-cli --force 
+         
+ 3. DESINSTALACIONES: Ejecutar:      
+    C:\ProgramData\chocolatey\bin\minikube stop
+    C:\ProgramData\chocolatey\bin\minikube delete
+ 
+    choco uninstall minikube --force 
+    choco uninstall kubernetes-cli --force
+ 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 -------------------------------------------------------------------------- [KUBERNETES] ------------------------------------------------------------------------- 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-* Se debe de ACTIVAR en KUBERNETES lo siguiente:
+  1. MINIKUBE: 
+     - minikube start --vm-driver=virtualbox --memory=8000 --cpus=4    [RECOMENDADO]
+     - minikube start --vm-driver=virtualbox --memory 6192 --cpus 2    [MÍNIMO]
 
-  A. PLUGINs:
-     Agregando y desagregando ADDONs en 'MINIKUBE': 
+     minikube dashboard
+     minikube service list
+     
+     
+  Se debe de ACTIVAR en 'KUBERNETES' lo siguiente:
+
+  1.1. PLUGINs:
+       Agregando y desagregando ADDONs en 'MINIKUBE': 
  
-     minikube addons list
-   
-     minikube addons enable ingress 
-     minikube addons enable ingress-dns
-     minikube addons enable logviewer
-     minikube addons enable metrics-server
-  
-     minikube addons disable ingress 
-     minikube addons disable ingress-dns
-     minikube addons disable logviewer
-     minikube addons disable metrics-server
+       minikube addons list
+       
+       HABILITAR: 
+       minikube addons enable ingress 
+       minikube addons enable ingress-dns
+       minikube addons enable logviewer
+       minikube addons enable metrics-server
+       
+       DESHABILITAR: 
+       minikube addons disable ingress 
+       minikube addons disable ingress-dns
+       minikube addons disable logviewer
+       minikube addons disable metrics-server
     
-  B. DOCKER:   
-	 minikube docker-env
+  1.2. DOCKER:   
+	   minikube docker-env
 	   
-	 se muestra:
-	 SET DOCKER_TLS_VERIFY=1
-	 SET DOCKER_HOST=tcp://192.168.137.84:2376
-	 SET DOCKER_CERT_PATH=C:\Users\cesar\.minikube\certs
-	 REM Run this command to configure your shell:
-	 REM @FOR /f "tokens=*" %i IN ('minikube docker-env') DO @%i
+	   se muestra:
+	   SET DOCKER_TLS_VERIFY=1
+	   SET DOCKER_HOST=tcp://192.168.137.84:2376
+	   SET DOCKER_CERT_PATH=C:\Users\cesar\.minikube\certs
+	   REM Run this command to configure your shell:
+	   REM @FOR /f "tokens=*" %i IN ('minikube docker-env') DO @%i
 	   
-	 Ejecutar:
-	 @FOR /f "tokens=*" %i IN ('minikube docker-env') DO @%i
-
+	   Ejecutar:
+	   @FOR /f "tokens=*" %i IN ('minikube docker-env') DO @%i
+ 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 -------------------------------------------------------------------------- [DNS / HOST] ------------------------------------------------------------------------- 
