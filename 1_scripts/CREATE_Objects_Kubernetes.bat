@@ -53,7 +53,7 @@ kubectl create -f "%vRUTA_FILE_SYSTEM%2_organization-service_[Deployment-Service
 ECHO. 
 @ECHO %vTRANSACCION% -- INSTALANDO SCRIPs [OTHERs: 'GRAFANA-JAEGER-PROMETHEUS-ZIPKIN-STACK']:  
 kubectl create -f "%vRUTA_FILE_SYSTEM%1_jaeger-server_[Deployment-Service].yml"
-kubectl create -f "%vRUTA_FILE_SYSTEM%1_grafana-server_[ConfigMap-Deployment-Service].yml"
+kubectl create -f "%vRUTA_FILE_SYSTEM%1_grafana-server_[ConfigMap-Secret-Deployment-Service].yml"
 kubectl create -f "%vRUTA_FILE_SYSTEM%1_prometheus-server_[ConfigMap-Deployment-Service].yml"
 kubectl create -f "%vRUTA_FILE_SYSTEM%1_zipkin-server_[Deployment-Service].yml"
 kubectl create -f "%vRUTA_FILE_SYSTEM%1_stack_[Filebeat-ConfigMap-DaemonSet-ClusterRoleBinding-ClusterRole-ServiceAccount].yml"
