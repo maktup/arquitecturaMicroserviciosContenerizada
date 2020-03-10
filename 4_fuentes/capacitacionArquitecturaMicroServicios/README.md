@@ -122,7 +122,7 @@ Las IPs deberían ser manejadas como 'FIJAS', sino 'ACTUALIZARLAS' constantemente
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
----------------------------------------------------------- [INSTALACION / DESINSTALACION (SERVICIOS)] ----------------------------------------------------------- 
+---------------------------------------------------------- [INSTALACION / DESINSTALACION (SERVICIOS)] ---------------------------------------------------------- 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
  
 * El ORDEN de MODULOS que se debe manejar para el DESPLIEGUE (SCRIPTs) respectivo CORRECTO debe ser el siguiente:
@@ -499,7 +499,7 @@ QUERYS: ejemplos diferentes:
 
 IMPORTANTE: Configuraciones de VISUALIZACIÓN  de Estadisticos (métricas) enviadas desde un DATASOURCE ('PROMETHEUS').
 ----------
-  
+ 
  1. [EXPLORE]: 
     Para realizar QUERYS sobre las métricas.
     
@@ -510,7 +510,7 @@ IMPORTANTE: Configuraciones de VISUALIZACIÓN  de Estadisticos (métricas) enviada
     Configuración de SMTP desde .yml para SOBREESCRIBIR con 'ConfigMaps'. 
     
     * Configurar en GMAIL el 'ACCESO A APLICACIONES POCO SEGURAS': https://myaccount.google.com/u/0/lesssecureapps?pli=1
-    * Desde el POD ingresar (VALIDAR): 
+    * Desde el POD ingresar (VALIDAR), para validar: 'SMTP': 
       - cat /etc/grafana/grafana.ini 
     
  3. [DATASOURCE]:
