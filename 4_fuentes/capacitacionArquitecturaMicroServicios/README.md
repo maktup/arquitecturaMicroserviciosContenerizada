@@ -202,6 +202,10 @@ HERRAMIENTAS (MICROSERVICIOS) - [DESPLEGADAS]:
 ---------------------------------------------------------------------------- [MAVEN] ---------------------------------------------------------------------------- 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 
+* VARIABLE DE ENTORNO: 
+  - JAVA_HOME => C:\JAVA\MAVEN\SOFTWARE\apache-maven-3.6.0_local
+  - PATH      => %JAVA_HOME%\bin
+
 * RUTA CONFIG:  C:\JAVA\MAVEN\SOFTWARE\apache-maven-3.6.0_local\conf\settings.xml
 
   - REFERENCIAR REPOSITORIO:  <localRepository>C:\JAVA\MAVEN\REPOSITORIO\MavenRepo_3.6_Local</localRepository>  
